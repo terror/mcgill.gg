@@ -1,3 +1,4 @@
+import { Dialog, Transition } from '@headlessui/react';
 import {
   APIProvider,
   InfoWindow,
@@ -5,16 +6,13 @@ import {
   Marker,
   useMarkerRef,
 } from '@vis.gl/react-google-maps';
-import { Fragment, useState } from 'react';
+import { Fragment } from 'react';
+import { twMerge } from 'tailwind-merge';
 
 import * as buildingCodes from '../assets/buildingCodes.json';
 import * as buildingCoordinates from '../assets/buildingCoordinates.json';
+import { useDarkMode } from '../hooks/useDarkMode';
 import { getGoogleAPIKey } from '../lib/utils';
-import type { Course } from '../model/Course';
-
-type LocationProps = {
-  course: Course;
-};
 
 type MarkerProps = {
   position: google.maps.LatLngLiteral;
@@ -23,6 +21,7 @@ type MarkerProps = {
 
 const BuildingMarker = ({ position, buildingName }: MarkerProps) => {
   const [markerRef, marker] = useMarkerRef();
+
   return (
     <Fragment>
       <Marker ref={markerRef} position={position} />
@@ -33,55 +32,87 @@ const BuildingMarker = ({ position, buildingName }: MarkerProps) => {
   );
 };
 
-export const BuildingLocation = ({ course }: LocationProps) => {
-  const [position, setPosition] = useState({ lat: 45.5048, lng: -73.5772 });
+type LocationProps = {
+  title: string; // Adams Building, Agriculture & Technology labs, etc..
+  code: string; // ADAMS, AGTECH, etc..
+  open: boolean;
+  onClose: () => void;
+};
 
-  const codes = new Set<string>();
-  for (const schedule of course.schedule) {
-    // not sure what blocks are, defaulting to taking first element
-    for (const block of schedule.blocks) {
-      block.location
-        .split('; ')
-        .map((x) => x.split(' ')[0])
-        .forEach((x) => codes.add(x));
-    }
-  }
-  const buildings = Array.from(codes).map((building) => ({
-    coord: buildingCoordinates[
-      building as keyof typeof buildingCoordinates
+export const BuildingLocation = ({
+  title,
+  code,
+  open,
+  onClose,
+}: LocationProps) => {
+  const [darkMode] = useDarkMode();
+
+  const building = {
+    name: buildingCodes[code as keyof typeof buildingCodes],
+    coordinates: buildingCoordinates[
+      code as keyof typeof buildingCoordinates
     ] as google.maps.LatLngLiteral,
-    name: buildingCodes[building as keyof typeof buildingCodes],
-  }));
+  };
 
   return (
-    <div
-      className={
-        'relative w-full rounded-md bg-slate-50 shadow-sm dark:bg-neutral-800'
-      }
-    >
-      <div className='p-6'>
-        <h2
-          onClick={() => {
-            setPosition({ lat: 45.5048, lng: -73.5762 });
-          }}
-          className='mb-2 mt-1 text-xl font-bold leading-none text-gray-700 dark:text-gray-200'
+    <Transition appear show={open} as={Fragment}>
+      <Dialog
+        as='div'
+        className={twMerge('relative z-50', darkMode ? 'dark' : '')}
+        onClose={onClose}
+      >
+        <Transition.Child
+          as={Fragment}
+          enter='ease-out duration-200'
+          enterFrom='opacity-0'
+          enterTo='opacity-100'
+          leave='ease-in duration-200'
+          leaveFrom='opacity-100'
+          leaveTo='opacity-0'
         >
-          Building Location
-        </h2>
+          <div className='fixed inset-0 bg-black/25' />
+        </Transition.Child>
 
-        <div style={{ height: 350 }}>
-          <APIProvider apiKey={getGoogleAPIKey()}>
-            <Map defaultCenter={position} defaultZoom={15}>
-              {buildings.map((building) => (
-                <BuildingMarker
-                  position={building.coord}
-                  buildingName={building.name}
-                />
-              ))}
-            </Map>
-          </APIProvider>
+        <div className='fixed inset-y-0 left-0 w-screen overflow-y-scroll'>
+          <div className='flex min-h-full items-center justify-center p-4 text-center'>
+            <Transition.Child
+              as={Fragment}
+              enter='ease-out duration-200'
+              enterFrom='opacity-0 scale-95'
+              enterTo='opacity-100 scale-100'
+              leave='ease-in duration-150'
+              leaveFrom='opacity-100 scale-100'
+              leaveTo='opacity-0 scale-95'
+            >
+              <Dialog.Panel className='h-[600px] w-[600px] overflow-hidden rounded-2xl bg-white p-6 text-left align-middle shadow-xl transition-all dark:bg-neutral-800'>
+                <Dialog.Title
+                  as='h3'
+                  className='mb-4 text-lg font-medium leading-6 text-gray-900 dark:text-gray-200'
+                >
+                  {title}
+                </Dialog.Title>
+                <div className='relative w-full rounded-md bg-slate-50 shadow-sm dark:bg-neutral-800'>
+                  <div>
+                    <div style={{ height: 500 }}>
+                      <APIProvider apiKey={getGoogleAPIKey()}>
+                        <Map
+                          defaultCenter={{ lat: 45.5048, lng: -73.5772 }}
+                          defaultZoom={15}
+                        >
+                          <BuildingMarker
+                            position={building.coordinates}
+                            buildingName={building.name}
+                          />
+                        </Map>
+                      </APIProvider>
+                    </div>
+                  </div>
+                </div>
+              </Dialog.Panel>
+            </Transition.Child>
+          </div>
         </div>
-      </div>
-    </div>
+      </Dialog>
+    </Transition>
   );
 };
