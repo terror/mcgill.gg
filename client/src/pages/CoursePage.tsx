@@ -236,6 +236,7 @@ export const CoursePage = () => {
           </div>
           <div className='col-span-2'>
             <CourseRequirements course={course} requirements={requirements} />
+            <div className='py-2'></div>
           </div>
         </div>
         <div className='flex flex-col lg:hidden'>
