@@ -27,6 +27,33 @@ const LoginPrompt = () => {
   );
 };
 
+const highlightText = (
+  content: string,
+  matches?: [number, number][]
+): JSX.Element => {
+  if (!matches || matches.length === 0) {
+    return <>{content}</>;
+  }
+  let lastIndex = 0;
+  const elements: JSX.Element[] = [];
+
+  matches.forEach(([start, end]) => {
+    if (start > lastIndex) {
+      elements.push(<span>{content.substring(lastIndex, start)}</span>);
+    }
+    elements.push(
+      <span className='text-red-500'>{content.substring(start, end + 1)}</span>
+    );
+    lastIndex = end + 1;
+  });
+
+  if (lastIndex < content.length) {
+    elements.push(<span>{content.substring(lastIndex)}</span>);
+  }
+
+  return <>{elements}</>;
+};
+
 type ReviewInteractionsProps = {
   review: Review;
   interactions: Interaction[];
@@ -240,12 +267,18 @@ export const CourseReview = ({
             </div>
             {review.content.length < 300 || readMore ? (
               <div className='ml-1 mr-4 mt-2 hyphens-auto break-words text-left text-gray-800 dark:text-gray-300'>
-                {review.content}
+                {highlightText(review.content, review.matches)}
               </div>
             ) : (
               <>
                 <div className='ml-1 mr-4 mt-2 hyphens-auto break-words text-left text-gray-800 dark:text-gray-300'>
-                  {review.content.substring(0, 300) + '...'}
+                  {highlightText(
+                    review.content.substring(0, 300),
+                    review.matches?.filter(
+                      ([start, end]) => start <= 300 && end <= 300
+                    ) ?? []
+                  )}
+                  ...
                 </div>
                 <button
                   className='ml-1 mr-auto pt-1 text-gray-700 underline transition duration-300 ease-in-out hover:text-red-500 dark:text-gray-300 dark:hover:text-red-500'

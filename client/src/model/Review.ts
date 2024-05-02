@@ -13,4 +13,5 @@ export type Review = {
   timestamp: Timestamp;
   userId: string;
   likes: number;
+  matches?: [number, number][];
 };
