@@ -15,7 +15,7 @@ export const ResetButton = ({ className, onClear }: ResetButtonProps) => {
       )}
     >
       <button onClick={onClear}>
-        <RefreshCw className={'h-5 w-5 text-gray-500 dark:text-neutral-400'} />
+        <RefreshCw className={'size-5 text-gray-500 dark:text-neutral-400'} />
       </button>
     </div>
   );

@@ -4,12 +4,12 @@ import { GoX } from 'react-icons/go';
 import { Link } from 'react-router-dom';
 import { twMerge } from 'tailwind-merge';
 
+import type { Course } from '../lib/model';
 import {
   filterCurrentInstructors,
   getCurrentTerms,
   uniqueTermInstructors,
 } from '../lib/utils';
-import type { Course } from '../model/Course';
 import { Highlight } from './Highlight';
 import { Tooltip } from './Tooltip';
 

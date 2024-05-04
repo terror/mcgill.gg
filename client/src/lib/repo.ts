@@ -1,14 +1,16 @@
-import { GetCourseReviewsInteractionPayload } from '../model/GetCourseReviewsInteractionsPayload';
-import type { GetCourseWithReviewsPayload } from '../model/GetCourseWithReviewsPayload';
-import { GetCoursesPayload } from '../model/GetCoursesPayload';
-import type { GetInstructorPayload } from '../model/GetInstructorPayload';
-import type { GetInteractionsPayload } from '../model/GetInteractionsPayload';
-import { GetReviewsPayload } from '../model/GetReviewsPayload';
-import type { InteractionKind } from '../model/Interaction';
-import type { Notification } from '../model/Notification';
-import type { SearchResults } from '../model/SearchResults';
-import type { Subscription } from '../model/Subscription';
-import type { UserResponse } from '../model/User';
+import {
+  GetCoursePayload,
+  GetCourseReviewsInteractionPayload,
+  GetCoursesPayload,
+  GetInstructorPayload,
+  GetInteractionKindPayload,
+  GetReviewsPayload,
+  InteractionKind,
+  Notification,
+  SearchResults,
+  Subscription,
+  UserResponse,
+} from './model';
 
 const prefix = '/api';
 
@@ -166,8 +168,8 @@ export const repo = {
     courseId: string,
     userId: string,
     referrer: string | undefined
-  ): Promise<GetInteractionsPayload> {
-    return client.deserialize<GetInteractionsPayload>(
+  ): Promise<GetInteractionKindPayload> {
+    return client.deserialize<GetInteractionKindPayload>(
       'GET',
       `/interactions?course_id=${courseId}&user_id=${userId}&referrer=${referrer}`
     );
@@ -250,8 +252,8 @@ export const repo = {
 
   async getCourseWithReviews(
     id: string | undefined
-  ): Promise<GetCourseWithReviewsPayload | null> {
-    return client.deserialize<GetCourseWithReviewsPayload | null>(
+  ): Promise<GetCoursePayload | null> {
+    return client.deserialize<GetCoursePayload | null>(
       'GET',
       `/courses/${id}?with_reviews=true`
     );

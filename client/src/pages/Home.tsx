@@ -4,8 +4,8 @@ import { toast } from 'sonner';
 
 import { CourseSearchBar } from '../components/CourseSearchBar';
 import { Layout } from '../components/Layout';
+import type { SearchResults } from '../lib/model';
 import { getSearchIndex, updateSearchResults } from '../lib/searchIndex';
-import type { SearchResults } from '../model/SearchResults';
 
 const alerts: Map<string, string> = new Map([
   ['invalidMail', 'Please use a McGill email address to authenticate.'],
@@ -17,7 +17,7 @@ const { courses, instructors, coursesIndex, instructorsIndex } =
 export const Home = () => {
   const [searchParams] = useSearchParams();
 
-  const [results, setResults] = useState<SearchResults>({
+  const [results, setResults] = useState<SearchResults & { query: string }>({
     query: '',
     courses: [],
     instructors: [],

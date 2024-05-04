@@ -1,5 +1,6 @@
 use super::*;
 
+#[typeshare]
 #[derive(Clone, Debug, Serialize, Deserialize, Hash, Eq, PartialEq)]
 #[serde(rename_all = "camelCase")]
 pub enum InteractionKind {
@@ -22,6 +23,7 @@ impl Into<Bson> for InteractionKind {
   }
 }
 
+#[typeshare]
 #[derive(Clone, Debug, Serialize, Deserialize, Hash, Eq, PartialEq)]
 #[serde(rename_all = "camelCase")]
 pub struct Interaction {

@@ -41,7 +41,7 @@ dev: services
     'pnpm run dev'
 
 dev-deps:
-  cargo install present
+  cargo install present typeshare-cli
 
 e2e:
   pnpm run cy:e2e
@@ -56,6 +56,9 @@ fmt-check:
 
 forbid:
   ./bin/forbid
+
+gen-types:
+  ./bin/typeshare
 
 initialize *args: restart-services
   cargo run -- --source=seed serve --initialize --db-name=mcgill-courses {{args}}

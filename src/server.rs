@@ -211,7 +211,7 @@ mod tests {
     super::*,
     crate::instructors::GetInstructorPayload,
     axum::body::Body,
-    courses::GetCoursesPayload,
+    courses::{GetCoursePayload, GetCoursesPayload},
     http::{Method, Request},
     interactions::{
       GetCourseReviewsInteractionPayload, GetInteractionKindPayload,
@@ -444,8 +444,10 @@ mod tests {
 
     assert_eq!(response.status(), StatusCode::OK);
 
+    let payload = response.convert::<GetCoursePayload>().await;
+
     assert_eq!(
-      response.convert::<Course>().await,
+      payload.course,
       db.find_course_by_id("COMP202").await.unwrap().unwrap()
     );
   }

@@ -1,8 +1,7 @@
 import _ from 'lodash';
 import { Dispatch, SetStateAction, useEffect, useMemo, useState } from 'react';
 
-import type { Course } from '../model/Course';
-import type { Review } from '../model/Review';
+import type { Course, Review } from '../lib/model';
 import { Autocomplete } from './Autocomplete';
 import { FilterToggle } from './FilterToggle';
 import { ResetButton } from './ResetButton';
@@ -23,7 +22,7 @@ export type ReviewSortType = (typeof sortTypes)[number];
 type ReviewFilterProps = {
   course: Course;
   allReviews: Review[];
-  setReviews: Dispatch<SetStateAction<Review[]>>;
+  setReviews: Dispatch<SetStateAction<Review[] | undefined>>;
   setShowAllReviews: Dispatch<SetStateAction<boolean>>;
 };
 

@@ -7,6 +7,7 @@ pub(crate) struct GetInteractionKindParams {
   pub(crate) referrer: String,
 }
 
+#[typeshare]
 #[derive(Debug, Deserialize, Serialize, PartialEq)]
 pub(crate) struct GetInteractionKindPayload {
   pub(crate) kind: Option<InteractionKind>,
@@ -48,6 +49,7 @@ pub(crate) async fn get_user_interactions_for_course(
   }))
 }
 
+#[typeshare]
 #[derive(Debug, Deserialize, Serialize, PartialEq)]
 pub(crate) struct GetCourseReviewsInteractionPayload {
   pub(crate) course_id: String,

@@ -13,9 +13,9 @@ import { SearchBar } from '../components/SearchBar';
 import { Spinner } from '../components/Spinner';
 import { useDarkMode } from '../hooks/useDarkMode';
 import { useExploreFilterState } from '../hooks/useExploreFilterState';
+import type { Course } from '../lib/model';
 import { repo } from '../lib/repo';
 import { getCurrentTerms } from '../lib/utils';
-import type { Course } from '../model/Course';
 
 const makeSortPayload = (sort: SortByType) => {
   switch (sort) {

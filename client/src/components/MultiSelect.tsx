@@ -75,7 +75,7 @@ export const MultiSelect = ({
             />
             <Combobox.Button className='absolute inset-y-0 flex w-full items-center'>
               <ChevronDown
-                className='ml-auto mr-4 h-5 w-5 text-gray-400'
+                className='ml-auto mr-4 size-5 text-gray-400'
                 aria-hidden='true'
               />
             </Combobox.Button>

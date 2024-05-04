@@ -8,9 +8,9 @@ import { CourseReview } from '../components/CourseReview';
 import { JumpToTopButton } from '../components/JumpToTopButton';
 import { Layout } from '../components/Layout';
 import { Spinner } from '../components/Spinner';
+import { Review } from '../lib/model';
 import { repo } from '../lib/repo';
 import { courseIdToUrlParam, spliceCourseCode, timeSince } from '../lib/utils';
-import { Review } from '../model/Review';
 import { Loading } from './Loading';
 
 export const Reviews = () => {

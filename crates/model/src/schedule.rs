@@ -1,5 +1,6 @@
 use super::*;
 
+#[typeshare]
 #[derive(
   Clone,
   Debug,
@@ -30,6 +31,7 @@ impl Into<Bson> for Block {
   }
 }
 
+#[typeshare]
 #[derive(
   Clone,
   Debug,
@@ -58,6 +60,7 @@ impl Into<Bson> for TimeBlock {
   }
 }
 
+#[typeshare]
 #[derive(
   Clone,
   Debug,

@@ -10,3 +10,4 @@ combine = { path = "../combine" }
 derivative = "2.2.0"
 serde = { version = "1.0.164", features = ["derive"] }
 serde_json = "1.0.99"
+typeshare = "1.0.2"

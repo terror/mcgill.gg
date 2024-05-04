@@ -4,9 +4,8 @@ import { LuArrowLeft, LuArrowRight } from 'react-icons/lu';
 import { twMerge } from 'tailwind-merge';
 
 import * as buildingCodes from '../assets/buildingCodes.json';
+import type { Block, Course, TimeBlock } from '../lib/model';
 import { mod, sortTerms } from '../lib/utils';
-import { Course } from '../model/Course';
-import { Block, TimeBlock } from '../model/Schedule';
 import { Tooltip } from './Tooltip';
 
 // Unused component, can use this later for schedule builder
@@ -24,12 +23,16 @@ const vsbDays: Record<string, string> = {
   '7': 'Sat',
 };
 
-const convertVsbTime = (t: string) => {
-  return parseInt(t, 10);
+const convertVsbTime = (time?: string) => {
+  if (!time) throw Error('Time is undefined');
+  return parseInt(time, 10);
 };
 
-const vsbTimeToDisplay = (time: string) => {
+const vsbTimeToDisplay = (time?: string) => {
+  if (!time) throw Error('Time is undefined');
+
   const approxTimeOfTheDay = parseInt(time, 10) / 60;
+
   const hour = Math.floor(approxTimeOfTheDay);
   const minute = Math.round((approxTimeOfTheDay - hour) * 60);
 
@@ -62,6 +65,7 @@ type TimeblockCardProps = {
 const TimeblockCard = ({ hour, timeblock, block }: TimeblockCardProps) => {
   const t1 = convertVsbTime(timeblock.t1);
   const t2 = convertVsbTime(timeblock.t2);
+
   const height = (t2 - t1) * HEIGHT_FACTOR;
 
   if (height > 40) {
@@ -94,8 +98,8 @@ const TimeblockCard = ({ hour, timeblock, block }: TimeblockCardProps) => {
       }}
     >
       <Tooltip
-        text={`${vsbTimeToDisplay(timeblock.t1)} - ${vsbTimeToDisplay(
-          timeblock.t2
+        text={`${vsbTimeToDisplay(timeblock?.t1)} - ${vsbTimeToDisplay(
+          timeblock?.t2
         )}`}
         className='whitespace-nowrap'
       >
@@ -111,16 +115,18 @@ const TimeblockCard = ({ hour, timeblock, block }: TimeblockCardProps) => {
 
 type ScheduleDayProps = {
   day: string;
-  blocks: Block[];
+  blocks?: Block[];
 };
 
 const timeRange = _.range(8, 18);
 
 const ScheduleDay = ({ day, blocks }: ScheduleDayProps) => {
-  const dayBlocks = blocks.map((block) => ({
+  const dayBlocks = blocks?.map((block) => ({
     ...block,
-    timeblocks: block.timeblocks.filter((b) => b.day === day),
+    timeblocks: block?.timeblocks?.filter((b) => b.day === day),
   }));
+
+  if (!dayBlocks) return null;
 
   return (
     <div className='col-span-1'>
@@ -135,15 +141,17 @@ const ScheduleDay = ({ day, blocks }: ScheduleDayProps) => {
         let block: Block | undefined = undefined;
 
         for (const b of dayBlocks) {
-          const blockIndex = b.timeblocks.findIndex((b) => {
+          const blockIndex = b?.timeblocks?.findIndex((b) => {
             const time = convertVsbTime(b.t1);
             return time >= t * 60 && time <= (t + 1) * 60;
           });
 
+          if (!blockIndex) continue;
+
           if (blockIndex !== -1) {
-            tb = b.timeblocks[blockIndex];
+            tb = b?.timeblocks?.at(blockIndex);
             block = b;
-            b.timeblocks.splice(blockIndex);
+            b?.timeblocks?.splice(blockIndex);
           }
         }
 
@@ -198,7 +206,7 @@ export const VisualSchedule = ({ course }: VisualScheduleProps) => {
   };
 
   const schedule = terms[term][blockIndex];
-  const firstBlock = schedule.blocks[0];
+  const firstBlock = schedule?.blocks?.at(0);
 
   if (!schedule) {
     return null;
@@ -235,7 +243,7 @@ export const VisualSchedule = ({ course }: VisualScheduleProps) => {
             />
           </button>
           <div className='font-medium'>
-            {schedule.blocks.map((b) => b.display).join(' + ')}
+            {schedule?.blocks?.map((b) => b.display).join(' + ')}
           </div>
           <button onClick={updateIndex(1)} disabled={arrowsDisabled}>
             <LuArrowRight
@@ -248,17 +256,17 @@ export const VisualSchedule = ({ course }: VisualScheduleProps) => {
             />
           </button>
         </div>
-        <div>{firstBlock.campus}</div>
+        <div>{firstBlock?.campus}</div>
         <span className='inline-block font-medium'>
           {((split) =>
-            split.map((location: string, index) => (
+            split?.map((location: string, index) => (
               <span key={index}>
                 <BlockLocation location={location.trim()} />
                 {index !== split.length - 1 && (
                   <span className='inline-block'>,&nbsp;</span>
                 )}
               </span>
-            )))(firstBlock.location.split(';'))}
+            )))(firstBlock?.location?.split(';'))}
         </span>
         <div className='ml-auto'>
           ({blockIndex + 1}/{terms[term].length})

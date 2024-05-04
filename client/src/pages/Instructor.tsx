@@ -10,10 +10,9 @@ import { CourseReview } from '../components/CourseReview';
 import { Layout } from '../components/Layout';
 import { ReviewEmptyPrompt } from '../components/ReviewEmptyPrompt';
 import { useAuth } from '../hooks/useAuth';
+import type { Instructor as InstructorType, Review } from '../lib/model';
 import { repo } from '../lib/repo';
 import { courseIdToUrlParam } from '../lib/utils';
-import type { Instructor as InstructorType } from '../model/Instructor';
-import type { Review } from '../model/Review';
 import { Loading } from './Loading';
 import { NotFound } from './NotFound';
 

@@ -4,7 +4,7 @@ import { PropsWithChildren } from 'react';
 import { LuFlame } from 'react-icons/lu';
 import * as Yup from 'yup';
 
-import type { Course } from '../model/Course';
+import type { Course } from '../lib/model';
 import { BirdIcon } from './BirdIcon';
 import { IconRatingInput } from './IconRatingInput';
 import { MultiSelect } from './MultiSelect';

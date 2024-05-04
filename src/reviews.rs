@@ -11,11 +11,12 @@ pub(crate) struct GetReviewsParams {
   pub(crate) with_user_count: Option<bool>,
 }
 
+#[typeshare]
 #[derive(Serialize, Deserialize)]
 #[serde(rename_all = "camelCase")]
 pub(crate) struct GetReviewsPayload {
   pub reviews: Vec<Review>,
-  pub unique_user_count: Option<u64>,
+  pub unique_user_count: Option<u32>,
 }
 
 pub(crate) async fn get_reviews(

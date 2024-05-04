@@ -7,6 +7,7 @@ use {
     fmt::{self, Display, Formatter},
     path::PathBuf,
   },
+  typeshare::typeshare,
 };
 
 mod course;

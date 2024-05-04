@@ -1,5 +1,6 @@
 use super::*;
 
+#[typeshare]
 #[derive(Clone, Debug, Serialize, Deserialize, Hash, Eq, PartialEq)]
 #[serde(rename_all = "camelCase")]
 pub struct Review {

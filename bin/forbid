@@ -9,5 +9,7 @@ which rg
   --ignore-case \
   --glob !bin/forbid \
   --glob !package-lock.json \
+  --glob !pnpm-lock.yaml \
   --glob !seed \
+  --glob !tools/*/poetry.lock \
   'dbg!|fixme|todo|xxx'

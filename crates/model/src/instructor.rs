@@ -1,5 +1,6 @@
 use super::*;
 
+#[typeshare]
 #[derive(
   Clone,
   Debug,

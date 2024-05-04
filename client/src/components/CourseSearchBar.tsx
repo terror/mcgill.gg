@@ -3,8 +3,8 @@ import { Layers, User } from 'react-feather';
 import { Link, useNavigate } from 'react-router-dom';
 import { twMerge } from 'tailwind-merge';
 
+import { SearchResults } from '../lib/model';
 import { courseIdToUrlParam, spliceCourseCode } from '../lib/utils';
-import type { SearchResults } from '../model/SearchResults';
 import { Highlight } from './Highlight';
 import { SearchBar } from './SearchBar';
 
@@ -92,7 +92,7 @@ const ExploreButton = () => {
 };
 
 type CourseSearchBarProps = {
-  results: SearchResults;
+  results: SearchResults & { query: string };
   handleInputChange: (query: string) => void;
   onResultClick?: () => void;
 };

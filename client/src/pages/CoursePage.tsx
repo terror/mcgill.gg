@@ -15,12 +15,9 @@ import { ReviewEmptyPrompt } from '../components/ReviewEmptyPrompt';
 import { ReviewFilter } from '../components/ReviewFilter';
 import { SchedulesDisplay } from '../components/SchedulesDisplay';
 import { useAuth } from '../hooks/useAuth';
+import { Course, Interaction, Requirements, Review } from '../lib/model';
 import { repo } from '../lib/repo';
 import { getCurrentTerms } from '../lib/utils';
-import type { Course } from '../model/Course';
-import { Interaction } from '../model/Interaction';
-import type { Requirements } from '../model/Requirements';
-import type { Review } from '../model/Review';
 import { Loading } from './Loading';
 
 export const CoursePage = () => {
@@ -38,7 +35,9 @@ export const CoursePage = () => {
   const [course, setCourse] = useState<Course | null | undefined>(undefined);
   const [editReviewOpen, setEditReviewOpen] = useState(false);
   const [showAllReviews, setShowAllReviews] = useState(false);
-  const [showingReviews, setShowingReviews] = useState<Review[]>([]);
+  const [showingReviews, setShowingReviews] = useState<Review[] | undefined>(
+    undefined
+  );
 
   useEffect(() => {
     firstFetch.current = true;
@@ -102,11 +101,13 @@ export const CoursePage = () => {
   }
 
   const requirements: Requirements = {
-    prereqs: course.prerequisites,
-    coreqs: course.corequisites,
+    prerequisites: course.prerequisites,
+    corequisites: course.corequisites,
     restrictions: course.restrictions,
     prerequisitesText: course.prerequisitesText,
     corequisitesText: course.corequisitesText,
+    logicalCorequisites: course.logicalCorequisites,
+    logicalPrerequisites: course.logicalPrerequisites,
   };
 
   const userReview = showingReviews?.find((r) => r.userId === user?.id);

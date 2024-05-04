@@ -18,6 +18,7 @@ impl From<&str> for Requirement {
   }
 }
 
+#[typeshare]
 #[derive(
   Debug, PartialEq, Eq, Serialize, Deserialize, Clone, Hash, Ord, PartialOrd,
 )]
@@ -37,10 +38,11 @@ impl Into<Bson> for Operator {
   }
 }
 
+#[typeshare]
 #[derive(
   Debug, PartialEq, Eq, Serialize, Deserialize, Clone, Hash, Ord, PartialOrd,
 )]
-#[serde(untagged)]
+#[serde(tag = "type", content = "content")]
 pub enum ReqNode {
   Course(String),
   Group {
@@ -67,7 +69,9 @@ impl Default for ReqNode {
   }
 }
 
+#[typeshare]
 #[derive(Debug, Default, Clone, Serialize, Deserialize, PartialEq)]
+#[serde(rename_all = "camelCase")]
 pub struct Requirements {
   pub prerequisites_text: Option<String>,
   pub corequisites_text: Option<String>,

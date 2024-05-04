@@ -2,9 +2,7 @@ import { Index } from 'flexsearch';
 import _ from 'lodash';
 
 import data from '../assets/searchData.json';
-import { Course } from '../model/Course';
-import { Instructor } from '../model/Instructor';
-import type { SearchResults } from '../model/SearchResults';
+import { Course, Instructor, SearchResults } from '../lib/model';
 
 let coursesIndex: Index | null = null;
 let instructorsIndex: Index | null = null;
@@ -15,7 +13,8 @@ export type CourseData = Pick<
 >;
 
 export const getSearchIndex = () => {
-  const courses = data as CourseData[];
+  const courses = data as unknown as CourseData[];
+
   const instructors: Instructor[] = _.uniqBy(
     courses.flatMap((course: CourseData) => course.instructors),
     (instructor: Instructor) => instructor.name
@@ -53,7 +52,7 @@ export const updateSearchResults = (
   instructors: Instructor[],
   coursesIndex: Index,
   instructorsIndex: Index,
-  setResults: (_: SearchResults) => void
+  setResults: (_: SearchResults & { query: string }) => void
 ) => {
   const courseSearchResults = coursesIndex
     .search(query, 4)
@@ -64,7 +63,7 @@ export const updateSearchResults = (
 
   setResults({
     query: query,
-    courses: courseSearchResults,
+    courses: courseSearchResults as Course[],
     instructors: instructorSearchResults,
   });
 };

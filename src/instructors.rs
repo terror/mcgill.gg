@@ -1,5 +1,6 @@
 use super::*;
 
+#[typeshare]
 #[derive(Debug, Deserialize, Serialize)]
 pub(crate) struct GetInstructorPayload {
   pub(crate) instructor: Option<Instructor>,

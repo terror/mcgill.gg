@@ -4,9 +4,8 @@ import { PiGraphFill } from 'react-icons/pi';
 import { Link } from 'react-router-dom';
 import { twMerge } from 'tailwind-merge';
 
+import type { Course, Requirements } from '../lib/model';
 import { capitalize, punctuate } from '../lib/utils';
-import type { Course } from '../model/Course';
-import type { Requirements } from '../model/Requirements';
 import { CourseGraph } from './CourseGraph';
 
 type ReqsBlockProps = {
@@ -129,7 +128,7 @@ export const CourseRequirements = ({
               Restrictions
             </h2>
             <p className='text-gray-500 dark:text-gray-400'>
-              {requirements.restrictions !== null
+              {requirements.restrictions
                 ? capitalize(punctuate(requirements.restrictions))
                 : 'This course has no restrictions.'}
             </p>

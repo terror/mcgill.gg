@@ -15,9 +15,9 @@ export const DarkModeToggle = () => {
       className='rounded-2xl p-1 hover:bg-gray-50 dark:hover:bg-neutral-700'
     >
       {darkMode ? (
-        <SunIcon className='h-6 w-6 fill-gray-400 stroke-gray-400 stroke-2' />
+        <SunIcon className='size-6 fill-gray-400 stroke-gray-400 stroke-2' />
       ) : (
-        <MoonIcon className='h-6 w-6 stroke-neutral-500 stroke-2' />
+        <MoonIcon className='size-6 stroke-neutral-500 stroke-2' />
       )}
     </button>
   );

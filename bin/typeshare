@@ -1,0 +1,12 @@
+#!/usr/bin/env bash
+
+OUTPUT=./client/src/lib/model.ts
+
+typeshare -l typescript -o $OUTPUT .
+
+# Hack to get dates to work
+echo 'export interface DateTime {
+  $date: {
+    $numberLong: string;
+  };
+};' >> $OUTPUT

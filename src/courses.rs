@@ -7,11 +7,12 @@ pub(crate) struct GetCoursesParams {
   with_course_count: Option<bool>,
 }
 
+#[typeshare]
 #[derive(Debug, Serialize, Deserialize)]
 #[serde(rename_all = "camelCase")]
 pub(crate) struct GetCoursesPayload {
   pub(crate) courses: Vec<Course>,
-  pub(crate) course_count: Option<u64>,
+  pub(crate) course_count: Option<u32>,
 }
 
 pub(crate) async fn get_courses(
@@ -36,6 +37,14 @@ pub(crate) struct GetCourseParams {
   with_reviews: Option<bool>,
 }
 
+#[typeshare]
+#[derive(Debug, Serialize, Deserialize)]
+#[serde(rename_all = "camelCase")]
+pub(crate) struct GetCoursePayload {
+  pub(crate) course: Course,
+  pub(crate) reviews: Option<Vec<Review>>,
+}
+
 pub(crate) async fn get_course_by_id(
   Path(id): Path<String>,
   Query(params): Query<GetCourseParams>,
@@ -53,11 +62,20 @@ pub(crate) async fn get_course_by_id(
 
         return Ok((
           StatusCode::OK,
-          Json(Some(json!({ "course": course, "reviews": reviews }))),
+          Json(Some(GetCoursePayload {
+            course,
+            reviews: Some(reviews.clone()),
+          })),
         ));
       }
 
-      (StatusCode::OK, Json(Some(json!(course))))
+      (
+        StatusCode::OK,
+        Json(Some(GetCoursePayload {
+          course,
+          reviews: None,
+        })),
+      )
     }
     None => (StatusCode::NOT_FOUND, Json(None)),
   })

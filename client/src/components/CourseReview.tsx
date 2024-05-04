@@ -9,11 +9,10 @@ import { toast } from 'sonner';
 import { twMerge } from 'tailwind-merge';
 
 import { useAuth } from '../hooks/useAuth';
+import type { Interaction, Review } from '../lib/model';
+import { InteractionKind } from '../lib/model';
 import { repo } from '../lib/repo';
 import { courseIdToUrlParam, spliceCourseCode } from '../lib/utils';
-import type { InteractionKind } from '../model/Interaction';
-import type { Interaction } from '../model/Interaction';
-import type { Review } from '../model/Review';
 import { BirdIcon } from './BirdIcon';
 import { DeleteButton } from './DeleteButton';
 import { IconRating } from './IconRating';
@@ -134,7 +133,7 @@ const ReviewInteractions = ({
     user
       ? kind === 'like'
         ? removeInteraction()
-        : addInteraction('like')
+        : addInteraction(InteractionKind.Like)
       : displayLoginPrompt();
   };
 
@@ -142,7 +141,7 @@ const ReviewInteractions = ({
     user
       ? kind === 'dislike'
         ? removeInteraction()
-        : addInteraction('dislike')
+        : addInteraction(InteractionKind.Dislike)
       : displayLoginPrompt();
   };
 

@@ -5,8 +5,8 @@ import { toast } from 'sonner';
 import { twMerge } from 'tailwind-merge';
 
 import { useDarkMode } from '../hooks/useDarkMode';
+import type { Course } from '../lib/model';
 import { repo } from '../lib/repo';
-import type { Course } from '../model/Course';
 import {
   ReviewForm,
   ReviewFormInitialValues,
