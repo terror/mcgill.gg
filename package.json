@@ -8,6 +8,8 @@
     "cy:e2e": "start-server-and-test dev http-get://localhost:5173 cy:run-e2e",
     "cy-open-e2e": "cypress open --e2e --browser chrome",
     "cy-open-unit": "cypress open --component --browser chrome",
+    "cy-open-e2e-chrome": "cypress open --e2e",
+    "cy-open-unit-chrome": "cypress open --component",
     "cy-run-e2e": "cypress run --e2e",
     "cy-run-unit": "cypress run --component",
     "dev": "vite",
