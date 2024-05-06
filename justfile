@@ -44,7 +44,7 @@ dev-deps:
   cargo install present
 
 e2e:
-  pnpm run cy:e2e
+  pnpm run cy-e2e
 
 fmt:
   cargo fmt --all
