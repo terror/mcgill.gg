@@ -11,6 +11,7 @@ import { CourseRequirements } from '../components/CourseRequirements';
 import { CourseReview } from '../components/CourseReview';
 import { CourseReviewPrompt } from '../components/CourseReviewPrompt';
 import { EditReviewForm } from '../components/EditReviewForm';
+import { JumpToTopButton } from '../components/JumpToTopButton';
 import { Layout } from '../components/Layout';
 import { NotFound } from '../components/NotFound';
 import { ReviewEmptyPrompt } from '../components/ReviewEmptyPrompt';
@@ -397,6 +398,7 @@ export const CoursePage = () => {
           />
         )}
       </div>
+      <JumpToTopButton />
     </Layout>
   );
 };
