@@ -163,7 +163,7 @@ const questions = [
 
 const people = [
   {
-    name: "Liam Scalzulli (CS '2025)",
+    name: "Liam Scalzulli (CS '2026)",
     imageUrl: 'https://avatars.githubusercontent.com/u/31192478?v=4',
     links: [
       { title: 'Github', url: 'https://github.com/terror' },
@@ -171,7 +171,7 @@ const people = [
     ],
   },
   {
-    name: "Jeff Zhang (Hons CS '2025)",
+    name: "Jeff Zhang (Hons CS '2026)",
     imageUrl: 'https://avatars.githubusercontent.com/u/47371088?v=4',
     links: [
       { title: 'Github', url: 'https://github.com/39bytes' },
@@ -179,7 +179,7 @@ const people = [
     ],
   },
   {
-    name: "Sam Zhang (CS & Stats '2025)",
+    name: "Sam Zhang (CS & Stats '2026)",
     imageUrl: 'https://avatars.githubusercontent.com/u/112342947?v=4',
     links: [
       { title: 'Github', url: 'https://github.com/samzhang02' },
@@ -187,7 +187,7 @@ const people = [
     ],
   },
   {
-    name: "Joey Yu (CS '2025)",
+    name: "Joey Yu (CS '2026)",
     imageUrl: 'https://avatars.githubusercontent.com/u/25695219?v=4',
     links: [{ title: 'Github', url: 'https://github.com/itsjoeoui' }],
   },
