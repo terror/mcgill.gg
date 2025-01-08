@@ -72,7 +72,6 @@ impl Course {
       logical_corequisites: other
         .logical_corequisites
         .or(self.logical_corequisites),
-      schedule: Some(other.schedule.combine_opt(self.schedule)),
       ..other
     }
   }

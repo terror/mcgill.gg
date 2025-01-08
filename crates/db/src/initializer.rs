@@ -132,6 +132,11 @@ impl Initializer {
       }
     }
 
+    if self.options.invalidate_schedules {
+      info!("Invalidating course schedules...");
+      self.db.invalidate_course_schedules().await?;
+    }
+
     for seed in seeds {
       match seed {
         Seed::Courses((path, courses)) if !self.options.skip_courses => {

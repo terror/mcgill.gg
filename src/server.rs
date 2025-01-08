@@ -18,6 +18,12 @@ pub(crate) struct Server {
   skip_courses: bool,
   #[clap(long, default_value = "false", help = "Skip review seeding")]
   skip_reviews: bool,
+  #[clap(
+    long,
+    default_value = "false",
+    help = "Overwrite course schedules instead of combining"
+  )]
+  invalidate_schedules: bool,
 }
 
 #[derive(Debug)]
@@ -65,6 +71,7 @@ impl Server {
               multithreaded: self.multithreaded,
               skip_courses: self.skip_courses,
               skip_reviews: self.skip_reviews,
+              invalidate_schedules: self.invalidate_schedules,
               source,
             })
             .await

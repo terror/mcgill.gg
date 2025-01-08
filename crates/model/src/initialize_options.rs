@@ -7,4 +7,5 @@ pub struct InitializeOptions {
   pub skip_courses: bool,
   pub skip_reviews: bool,
   pub source: PathBuf,
+  pub invalidate_schedules: bool,
 }
