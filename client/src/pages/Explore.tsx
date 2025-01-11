@@ -104,7 +104,10 @@ export const Explore = () => {
 
     if (batch.courses.length === 0) setHasMore(false);
     else {
-      setCourses(courses?.concat(batch.courses));
+      const newCourses = courses
+        ? courses.concat(batch.courses)
+        : batch.courses;
+      setCourses(newCourses);
       setOffset(offset + limit);
     }
   };
