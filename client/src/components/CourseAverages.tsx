@@ -1,7 +1,7 @@
 import { produce } from 'immer';
 import _ from 'lodash';
+import { ChevronDown } from 'lucide-react';
 import { Fragment, useEffect, useState } from 'react';
-import { ChevronDown } from 'react-feather';
 import { IoIosArrowDown, IoIosArrowUp } from 'react-icons/io';
 import { Link } from 'react-router-dom';
 import { twMerge } from 'tailwind-merge';

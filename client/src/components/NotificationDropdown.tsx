@@ -1,8 +1,8 @@
 import { Menu, Transition } from '@headlessui/react';
+import { Bell } from 'lucide-react';
 import React, { Fragment, useEffect, useState } from 'react';
 import { FaTrash } from 'react-icons/fa';
 import { GoDotFill } from 'react-icons/go';
-import { VscBell } from 'react-icons/vsc';
 import { Link } from 'react-router-dom';
 import { toast } from 'sonner';
 
@@ -105,8 +105,8 @@ export const NotificationDropdown = ({
               <div>
                 <Menu.Button className='m-2 inline-flex justify-center text-sm font-medium text-white focus:outline-none focus-visible:ring-2 focus-visible:ring-white'>
                   <div className='relative'>
-                    <VscBell
-                      className='-mr-1 ml-2 size-5 stroke-[0.5] text-neutral-500 dark:text-gray-400'
+                    <Bell
+                      className='-mr-1 ml-2 size-5 text-neutral-500 dark:text-gray-400'
                       aria-hidden='true'
                     />
                     {notifications.filter((notification) => !notification.seen)

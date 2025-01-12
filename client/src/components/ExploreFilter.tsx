@@ -1,6 +1,5 @@
+import { Leaf, Snowflake, Sun } from 'lucide-react';
 import { useState } from 'react';
-import { BsSun } from 'react-icons/bs';
-import { FaLeaf, FaRegSnowflake } from 'react-icons/fa';
 import { twMerge } from 'tailwind-merge';
 
 import courseCodes from '../assets/courseCodes.json';
@@ -97,11 +96,11 @@ export const ExploreFilter = ({ variant }: ExploreFilterProp) => {
   const termToIcon = (term: CourseTerm) => {
     switch (term) {
       case 'Fall':
-        return <FaLeaf color='brown' />;
+        return <Leaf size={15} color='brown' />;
       case 'Winter':
-        return <FaRegSnowflake color='skyblue' />;
+        return <Snowflake size={15} color='skyblue' />;
       case 'Summer':
-        return <BsSun color='orange' />;
+        return <Sun size={15} color='orange' />;
     }
   };
 

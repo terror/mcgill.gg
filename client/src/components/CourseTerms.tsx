@@ -1,9 +1,7 @@
 import { produce } from 'immer';
+import { ChevronDown } from 'lucide-react';
+import { Leaf, Snowflake, Sun, X } from 'lucide-react';
 import { useEffect, useState } from 'react';
-import { ChevronDown } from 'react-feather';
-import { BsSun } from 'react-icons/bs';
-import { FaLeaf, FaRegSnowflake } from 'react-icons/fa';
-import { GoX } from 'react-icons/go';
 import { Link } from 'react-router-dom';
 import { twMerge } from 'tailwind-merge';
 
@@ -30,10 +28,11 @@ const SeasonIcon = ({ variant, term }: SeasonIconProps) => {
   const season = term.split(' ')[0].toLowerCase();
 
   const icons: Record<string, JSX.Element> = {
-    fall: <FaLeaf size={size} color='brown' />,
-    winter: <FaRegSnowflake size={size} color='skyblue' />,
-    summer: <BsSun size={size} color='orange' />,
+    fall: <Leaf size={size} color='brown' />,
+    winter: <Snowflake size={size} color='skyblue' />,
+    summer: <Sun size={size} color='orange' />,
   };
+
   const icon = icons[season];
 
   if (variant === 'large') {
@@ -86,9 +85,9 @@ export const CourseTerms = ({ course, variant, query }: CourseTermsProps) => {
       <div className='my-1.5 w-fit text-sm'>
         <div className='rounded-xl bg-gray-200 p-1 dark:bg-neutral-700'>
           <div className='flex items-center space-x-1'>
-            <GoX
+            <X
               size={variantToSize(variant)}
-              className='fill-gray-700 dark:fill-gray-200'
+              className='text-gray-700 dark:text-gray-200'
             />
             <div className='pr-1 font-medium text-gray-800 dark:text-gray-200'>
               Not Offered

@@ -1,6 +1,5 @@
+import { Bell, BellOff, ExternalLink } from 'lucide-react';
 import { useEffect, useState } from 'react';
-import { ExternalLink } from 'react-feather';
-import { VscBell, VscBellSlash } from 'react-icons/vsc';
 import { toast } from 'sonner';
 
 import { useAuth } from '../hooks/useAuth';
@@ -72,16 +71,16 @@ export const CourseInfo = ({ course, allReviews }: CourseInfoProps) => {
           <div className='flex items-center gap-2'>
             {user &&
               (isSubscribed ? (
-                <VscBellSlash
+                <BellOff
                   size={20}
                   onClick={unsubscribe}
-                  className='my-auto ml-1 cursor-pointer stroke-[0.5] transition-colors duration-300 hover:stroke-red-600 dark:text-gray-200'
+                  className='my-auto ml-1 cursor-pointer transition-colors duration-300 hover:stroke-red-600 dark:text-gray-200'
                 />
               ) : (
-                <VscBell
+                <Bell
                   size={20}
                   onClick={subscribe}
-                  className='my-auto ml-1 cursor-pointer stroke-[0.5] transition-colors duration-300 hover:stroke-red-600 dark:text-gray-200'
+                  className='my-auto ml-1 cursor-pointer transition-colors duration-300 hover:stroke-red-600 dark:text-gray-200'
                 />
               ))}
             {course.url ? (

@@ -1,8 +1,8 @@
 import { Transition } from '@headlessui/react';
 import { format } from 'date-fns';
+import { Edit, Tag } from 'lucide-react';
+import { Pin } from 'lucide-react';
 import { Fragment, useEffect, useState } from 'react';
-import { Edit, Tag } from 'react-feather';
-import { BsPinFill } from 'react-icons/bs';
 import { LuFlame, LuThumbsDown, LuThumbsUp } from 'react-icons/lu';
 import { Link } from 'react-router-dom';
 import { toast } from 'sonner';
@@ -233,7 +233,12 @@ export const CourseReview = ({
                   <Tag className='ml-2 mt-1 w-4 text-red-600' />
                 </Tooltip>
               )}
-              {canModify && <BsPinFill className='ml-2 mt-2 text-red-600' />}
+              {canModify && (
+                <Pin
+                  size={15}
+                  className='ml-2 mt-2 fill-rose-600 text-red-600'
+                />
+              )}
               <div className='grow' />
               <div className='flex w-64 flex-col items-end rounded-lg p-2'>
                 <div className='flex items-center gap-x-2'>
