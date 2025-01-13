@@ -1,7 +1,7 @@
 import { Transition } from '@headlessui/react';
 import { format } from 'date-fns';
+import { Edit, Tag } from 'lucide-react';
 import { Fragment, useEffect, useState } from 'react';
-import { Edit, Tag } from 'react-feather';
 import { BsPinFill } from 'react-icons/bs';
 import { LuFlame, LuThumbsDown, LuThumbsUp } from 'react-icons/lu';
 import { Link } from 'react-router-dom';

@@ -1,5 +1,5 @@
+import { ExternalLink } from 'lucide-react';
 import { useEffect, useState } from 'react';
-import { ExternalLink } from 'react-feather';
 import { VscBell, VscBellSlash } from 'react-icons/vsc';
 import { toast } from 'sonner';
 

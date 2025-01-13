@@ -1,6 +1,6 @@
 import { produce } from 'immer';
+import { ChevronDown } from 'lucide-react';
 import { useEffect, useState } from 'react';
-import { ChevronDown } from 'react-feather';
 import { BsSun } from 'react-icons/bs';
 import { FaLeaf, FaRegSnowflake } from 'react-icons/fa';
 import { GoX } from 'react-icons/go';

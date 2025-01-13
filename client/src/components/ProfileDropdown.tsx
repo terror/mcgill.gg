@@ -1,6 +1,6 @@
 import { Menu, Transition } from '@headlessui/react';
+import { ChevronRight, User } from 'lucide-react';
 import { Fragment } from 'react';
-import { ChevronRight, User } from 'react-feather';
 import { Link } from 'react-router-dom';
 import { twMerge } from 'tailwind-merge';
 

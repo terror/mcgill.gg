@@ -1,6 +1,6 @@
 import { Tab } from '@headlessui/react';
+import { User } from 'lucide-react';
 import { useEffect, useState } from 'react';
-import { User } from 'react-feather';
 import { Helmet } from 'react-helmet-async';
 import { LuFileText } from 'react-icons/lu';
 import { VscBell } from 'react-icons/vsc';

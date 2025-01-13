@@ -1,4 +1,4 @@
-import { RefreshCw } from 'react-feather';
+import { RefreshCw } from 'lucide-react';
 import { twMerge } from 'tailwind-merge';
 
 type ResetButtonProps = {

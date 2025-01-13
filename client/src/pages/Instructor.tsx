@@ -1,6 +1,6 @@
 import _ from 'lodash';
+import { ExternalLink } from 'lucide-react';
 import { Fragment, useEffect, useState } from 'react';
-import { ExternalLink } from 'react-feather';
 import { Helmet } from 'react-helmet-async';
 import { Link, useParams } from 'react-router-dom';
 import { toast } from 'sonner';

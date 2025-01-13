@@ -1,6 +1,6 @@
 import { Dialog, Transition } from '@headlessui/react';
+import { Trash2 } from 'lucide-react';
 import { Fragment, useState } from 'react';
-import { Trash2 } from 'react-feather';
 import { twMerge } from 'tailwind-merge';
 
 import { useDarkMode } from '../hooks/useDarkMode';

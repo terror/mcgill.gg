@@ -1,6 +1,6 @@
 import { Combobox, Transition } from '@headlessui/react';
+import { Check, ChevronDown, X } from 'lucide-react';
 import { useState } from 'react';
-import { Check, ChevronDown, X } from 'react-feather';
 import { twMerge } from 'tailwind-merge';
 
 type MultiSelectProps = {

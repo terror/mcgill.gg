@@ -1,6 +1,6 @@
 import { Combobox, Transition } from '@headlessui/react';
+import { ChevronDown } from 'lucide-react';
 import { useState } from 'react';
-import { ChevronDown } from 'react-feather';
 import { twMerge } from 'tailwind-merge';
 
 type AutocompleteProps<T extends string> = {
